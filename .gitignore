@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.env
+
+# Data (trop volumineuses pour git)
+data/raw/
+data/processed/
+*.csv
+*.parquet
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# Modèles sérialisés
+models/
+*.pt
+*.pkl
+*.joblib
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+
+# Coverage
+.coverage
+htmlcov/
+coverage.xml
+
+# OS
+.DS_Store

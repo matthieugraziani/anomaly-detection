@@ -1,0 +1,44 @@
+name: Benchmark
+
+on:
+  workflow_dispatch:
+    inputs:
+      dataset:
+        description: "Dataset à utiliser (synthetic | creditcard)"
+        required: true
+        default: "synthetic"
+
+jobs:
+  benchmark:
+    name: Benchmark complet
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -e .
+
+      - name: Générer données synthétiques
+        if: github.event.inputs.dataset == 'synthetic'
+        run: |
+          mkdir -p data/raw
+          python -c "
+          from anomaly_detection.data.loader import generate_synthetic
+          generate_synthetic(n_normal=5000, n_anomaly=100)
+          "
+
+      - name: Lancer le benchmark
+        run: |
+          python -m anomaly_detection.evaluation.benchmark \
+            --data data/raw/synthetic.csv \
+            --target label \
+            --experiment ci-benchmark
+
+      - name: Upload artefacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: models/
+          retention-days: 30
