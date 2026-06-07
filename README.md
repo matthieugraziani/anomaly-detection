@@ -1,6 +1,6 @@
 # Anomaly Detection
 
-[![CI](https://github.com/matthieugraziani/anomaly-detection/actions/workflows/ci.yml/badge.svg)](https://github.com/matthieugraziani/anomaly-detection/actions/workflows/ci.yml)
+[![CI](https://github.com/youruser/anomaly-detection/actions/workflows/ci.yml/badge.svg)](https://github.com/youruser/anomaly-detection/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MLflow](https://img.shields.io/badge/tracking-MLflow-orange.svg)](https://mlflow.org/)
@@ -100,7 +100,7 @@ curl -X POST http://localhost:8000/predict \
 ### Dashboard Streamlit
 
 ```bash
-streamlit run src/serving/dashboard.py
+streamlit run src/anomaly_detection/serving/dashboard.py
 ```
 
 ---
@@ -140,11 +140,12 @@ anomaly-detection/
 │   ├── 02_feature_engineering.ipynb
 │   └── 03_benchmark_models.ipynb
 ├── src/
-│   ├── config/settings.py
-│   ├── data/{loader,features}.py
-│   ├── models/{base,isolation_forest,autoencoder,lstm_ae}.py
-│   ├── evaluation/{metrics,benchmark}.py
-│   └── serving/{api,dashboard}.py
+│   └──anomaly_detection/
+│       ├── config/settings.py
+│       ├── data/{loader,features}.py
+│       ├── models/{base,isolation_forest,autoencoder,lstm_ae}.py
+│       ├── evaluation/{metrics,benchmark}.py
+│       └── serving/{api,dashboard}.py
 └── tests/
 ```
 
