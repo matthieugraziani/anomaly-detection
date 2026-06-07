@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import RobustScaler
 
-from src.anomaly_detection.config import settings
+from anomaly_detection.config import settings
 
 logger = logging.getLogger(__name__)
 
