@@ -100,7 +100,7 @@ curl -X POST http://localhost:8000/predict \
 ### Dashboard Streamlit
 
 ```bash
-streamlit run src/anomaly_detection/serving/dashboard.py
+streamlit run src/serving/dashboard.py
 ```
 
 ---
