@@ -139,7 +139,7 @@ anomaly-detection/
 │   ├── 01_eda.ipynb
 │   ├── 02_feature_engineering.ipynb
 │   └── 03_benchmark_models.ipynb
-├── src/anomaly_detection/
+├── src/
 │   ├── config/settings.py
 │   ├── data/{loader,features}.py
 │   ├── models/{base,isolation_forest,autoencoder,lstm_ae}.py
