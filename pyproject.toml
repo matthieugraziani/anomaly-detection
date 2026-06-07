@@ -34,6 +34,7 @@ dev = [
     "pytest>=8.2",
     "pytest-cov>=5.0",
     "pytest-asyncio>=0.23",
+    "pandas-stubs",
 ]
 
 [project.scripts]
@@ -57,6 +58,15 @@ known-first-party = ["anomaly_detection"]
 strict = true
 python_version = "3.11"
 explicit_package_bases = true
+
+[[tool.mypy.overrides]]
+module = [
+    "sklearn.*",
+    "plotly.*",
+    "pandas.*",
+    "kagglehub",
+]
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
