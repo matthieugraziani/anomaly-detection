@@ -3,7 +3,11 @@
 import numpy as np
 import pytest
 
-from anomaly_detection.models import AutoencoderDetector, IsolationForestDetector, LSTMAEDetector
+from anomaly_detection.models import (
+    AutoencoderDetector,
+    IsolationForestDetector,
+    LSTMAEDetector,
+)
 
 
 @pytest.fixture

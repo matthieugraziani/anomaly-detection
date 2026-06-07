@@ -13,7 +13,6 @@ from anomaly_detection.config import settings
 
 logger = logging.getLogger(__name__)
 
-# Dataset Kaggle de référence
 _KAGGLE_DATASET = "mlg-ulb/creditcardfraud"
 _KAGGLE_FILENAME = "creditcard.csv"
 
@@ -30,7 +29,7 @@ def download_kaggle_dataset(
     """Télécharge le dataset Credit Card Fraud depuis Kaggle via kagglehub.
 
     kagglehub télécharge dans son propre cache local et retourne le chemin.
-    Cette fonction copie ensuite le CSV dans ``dest_dir`` (ex: data/raw/).
+    Le CSV est ensuite copié dans ``dest_dir`` (ex : data/raw/).
 
     Prérequis :
         - ``pip install kagglehub``
@@ -45,13 +44,13 @@ def download_kaggle_dataset(
         Chemin vers le fichier CSV dans ``dest_dir``.
 
     Raises:
-        EnvironmentError: Si kagglehub n'est pas installé.
+        OSError: Si kagglehub n'est pas installé.
         RuntimeError: Si le CSV est introuvable dans le cache après téléchargement.
     """
     try:
         import kagglehub
     except ImportError as exc:
-        raise EnvironmentError(
+        raise OSError(
             "kagglehub n'est pas installé.\n"
             "  → pip install kagglehub\n"
             "  → Placez kaggle.json dans ~/.kaggle/\n"
@@ -66,23 +65,18 @@ def download_kaggle_dataset(
         logger.info("Dataset déjà présent : %s", target)
         return target
 
-    logger.info("Téléchargement du dataset Kaggle '%s' via kagglehub…", _KAGGLE_DATASET)
-
-    # kagglehub retourne le dossier du cache (télécharge si absent, sinon cache)
+    logger.info("Téléchargement '%s' via kagglehub…", _KAGGLE_DATASET)
     cache_dir = Path(kagglehub.dataset_download(_KAGGLE_DATASET))
     logger.info("Cache kagglehub : %s", cache_dir)
 
-    # Recherche du CSV dans le cache (à plat ou sous-dossiers)
     candidates = list(cache_dir.rglob(_KAGGLE_FILENAME))
     if not candidates:
         raise RuntimeError(
-            f"'{_KAGGLE_FILENAME}' introuvable dans le cache kagglehub : {cache_dir}\n"
+            f"'{_KAGGLE_FILENAME}' introuvable dans le cache : {cache_dir}\n"
             f"Contenu : {list(cache_dir.iterdir())}"
         )
 
-    src = candidates[0]
-    logger.info("Copie %s → %s", src, target)
-    shutil.copy2(src, target)
+    shutil.copy2(candidates[0], target)
     logger.info("Dataset prêt : %s (%.1f Mo)", target, target.stat().st_size / 1e6)
     return target
 
@@ -106,11 +100,11 @@ def load_csv(
 
     if not path.exists():
         if auto_download and path.name == _KAGGLE_FILENAME:
-            logger.warning("Fichier absent : %s — tentative de téléchargement Kaggle…", path)
+            logger.warning("Fichier absent : %s — tentative de téléchargement…", path)
             try:
                 path = download_kaggle_dataset(dest_dir=path.parent)
-            except (EnvironmentError, RuntimeError) as exc:
-                logger.error("Téléchargement automatique impossible : %s", exc)
+            except (OSError, RuntimeError) as exc:
+                logger.error("Téléchargement impossible : %s", exc)
                 raise FileNotFoundError(
                     f"Fichier introuvable et téléchargement échoué : {path}\n"
                     f"Détail : {exc}"

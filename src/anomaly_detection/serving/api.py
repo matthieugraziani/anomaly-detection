@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from pathlib import Path
-from typing import AsyncIterator
 
 import numpy as np
 import uvicorn
@@ -123,7 +123,12 @@ def update_threshold(model_name: str, threshold: float) -> dict[str, str]:
 
 
 def run() -> None:
-    uvicorn.run("anomaly_detection.serving.api:app", host=settings.api_host, port=settings.api_port, reload=False)
+    uvicorn.run(
+        "anomaly_detection.serving.api:app",
+        host=settings.api_host,
+        port=settings.api_port,
+        reload=False,
+    )
 
 
 if __name__ == "__main__":

@@ -57,7 +57,11 @@ def run() -> None:
         model_name = st.selectbox(
             "Modèle",
             ["isolation_forest", "autoencoder", "lstm_ae"],
-            format_func=lambda x: {"isolation_forest": "Isolation Forest", "autoencoder": "Autoencoder", "lstm_ae": "LSTM-AE"}[x],
+            format_func=lambda x: {
+                "isolation_forest": "Isolation Forest",
+                "autoencoder": "Autoencoder",
+                "lstm_ae": "LSTM-AE",
+            }[x],
         )
         threshold = st.slider("Seuil de détection", 0.0, 1.0, settings.default_threshold, 0.01)
         train_mode = st.checkbox("Entraîner un nouveau modèle", value=False)
@@ -90,7 +94,10 @@ def run() -> None:
     else:
         model = load_model(model_name)
         if model is None:
-            st.warning(f"Aucun modèle '{model_name}' trouvé. Activer 'Entraîner un nouveau modèle'.")
+            st.warning(
+                f"Aucun modèle '{model_name}' trouvé. "
+                "Activer 'Entraîner un nouveau modèle'."
+            )
 
     # ── Prédictions ───────────────────────────────────────────────────────────
     if model is not None:

@@ -98,7 +98,12 @@ def run_benchmark(
             mlflow.log_artifact(str(model_path))
 
             results.append({"model": detector.name, **metrics})
-            logger.info("AUC-ROC=%.4f, AP=%.4f, F1=%.4f", metrics["auc_roc"], metrics["average_precision"], metrics["f1"])
+            logger.info(
+                "AUC-ROC=%.4f, AP=%.4f, F1=%.4f",
+                metrics["auc_roc"],
+                metrics["average_precision"],
+                metrics["f1"],
+            )
 
     df_results = pd.DataFrame(results).set_index("model")
     print("\n=== Résultats benchmark ===")

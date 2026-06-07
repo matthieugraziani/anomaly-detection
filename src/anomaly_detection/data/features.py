@@ -27,7 +27,11 @@ def add_rolling_features(df: pd.DataFrame, cols: list[str] | None = None) -> pd.
             result[f"{col}_roll{w}_min"] = rolled.min()
 
     new_cols = result.shape[1] - df.shape[1]
-    logger.info("Rolling features ajoutées : +%d colonnes (fenêtres %s)", new_cols, settings.rolling_windows)
+    logger.info(
+        "Rolling features ajoutées : +%d colonnes (fenêtres %s)",
+        new_cols,
+        settings.rolling_windows,
+    )
     return result
 
 
