@@ -1,13 +1,13 @@
 """Tests des modèles de détection d'anomalies."""
 
+from __future__ import annotations
+
 import numpy as np
 import pytest
 
-from anomaly_detection.models import (
-    AutoencoderDetector,
-    IsolationForestDetector,
-    LSTMAEDetector,
-)
+from anomaly_detection.models import AutoencoderDetector
+from anomaly_detection.models import IsolationForestDetector
+from anomaly_detection.models import LSTMAEDetector
 
 
 @pytest.fixture

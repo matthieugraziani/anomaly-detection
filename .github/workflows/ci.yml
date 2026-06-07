@@ -19,6 +19,8 @@ jobs:
       - run: pip install -e ".[dev]"
       - name: Ruff
         run: ruff check src tests
+             ruff --version    ruff check tests/test_api.py --select I --diff
+             ruff check tests/test_models.py --select I --diff
       - name: Mypy
         run: mypy src
 
