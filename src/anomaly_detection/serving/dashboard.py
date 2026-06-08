@@ -38,10 +38,13 @@ def load_model(name: str) -> AnomalyDetector | None:
 
 @st.cache_data
 def load_data(path: str | None, target_col: str) -> tuple[pd.DataFrame, pd.Series | None]:
-    if path and Path(path).exists():
-        return load_csv(path, target_col)
-    df, y = generate_synthetic(save=False)
-    return df, y
+    if not path:
+        raise ValueError("Aucun fichier CSV fourni. Renseignez un chemin dans la barre latérale.")
+
+    if not Path(path).exists():
+        raise FileNotFoundError(f"Fichier introuvable : {path}")
+
+    return load_csv(path, target_col)
 
 
 def run() -> None:
@@ -51,8 +54,8 @@ def run() -> None:
     # ── Sidebar ──────────────────────────────────────────────────────────────
     with st.sidebar:
         st.header("Configuration")
-        data_path = st.text_input("Chemin CSV", placeholder="data/raw/creditcard.csv")
-        target_col = st.text_input("Colonne cible", value="label")
+        data_path = st.text_input("Chemin CSV", value="data/raw/creditcard.csv")
+        target_col = st.text_input("Colonne cible", value="Class")
 
         model_name = st.selectbox(
             "Modèle",
