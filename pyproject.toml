@@ -55,7 +55,6 @@ select = ["E", "F", "I", "UP", "B", "SIM"]
 known-first-party = ["anomaly_detection"]
 
 [tool.mypy]
-strict = true
 python_version = "3.11"
 strict = true
 
