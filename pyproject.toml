@@ -44,6 +44,9 @@ ad-dashboard = "anomaly_detection.serving.dashboard:run"
 [tool.hatch.build.targets.wheel]
 packages = ["anomaly_detection"]
 
+[tool.hatch.build.targets.wheel.sources]
+anomaly_detection = "src/anomaly_detection"
+
 [tool.ruff]
 line-length = 100
 target-version = "py311"
