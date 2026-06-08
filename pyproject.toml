@@ -44,9 +44,6 @@ ad-dashboard = "anomaly_detection.serving.dashboard:run"
 [tool.hatch.build.targets.wheel]
 packages = ["anomaly_detection"]
 
-[tool.hatch.build.targets.wheel.sources]
-"anomaly_detection" = "src/anomaly_detection"
-
 [tool.ruff]
 line-length = 100
 target-version = "py311"
@@ -60,6 +57,7 @@ known-first-party = ["anomaly_detection"]
 [tool.mypy]
 python_version = "3.11"
 strict = true
+namespace_packages = true
 
 [[tool.mypy.overrides]]
 module = [
