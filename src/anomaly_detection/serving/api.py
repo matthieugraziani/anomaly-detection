@@ -60,7 +60,7 @@ def _load_model(name: str) -> AnomalyDetector:
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+async def lifespan(_: FastAPI) -> AsyncIterator[None]:
     """Charge les modèles disponibles au démarrage."""
     model_names = ["isolation_forest", "autoencoder", "lstm_ae"]
     for name in model_names:
