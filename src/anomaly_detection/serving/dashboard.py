@@ -142,7 +142,7 @@ def run() -> None:
                 fig.add_trace(go.Histogram(x=scores, nbinsx=50, marker_color="#378ADD"))
             fig.add_vline(x=threshold, line_dash="dash", line_color="red", annotation_text="seuil")
             fig.update_layout(barmode="overlay", height=350, margin=dict(t=10, b=10))
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
 
         with col_g2:
             st.subheader("Scores dans le temps")
@@ -157,7 +157,7 @@ def run() -> None:
             fig2.add_hline(y=threshold, line_dash="dash", line_color="red")
             fig2.update_layout(height=350, margin=dict(t=10, b=10),
                                yaxis_title="Score d'anomalie")
-            st.plotly_chart(fig2, use_container_width=True)
+            st.plotly_chart(fig2, width='stretch')
 
         # ── Table des anomalies détectées ─────────────────────────────────────
         st.subheader("Échantillons détectés comme anomalies")
@@ -166,7 +166,7 @@ def run() -> None:
             df_anomalies = df.iloc[anomaly_idx].copy()
             df_anomalies["score"] = scores[anomaly_idx]
             df_anomalies = df_anomalies.sort_values("score", ascending=False)
-            st.dataframe(df_anomalies.head(50), use_container_width=True)
+            st.dataframe(df_anomalies.head(50), width='stretch')
         else:
             st.info("Aucune anomalie détectée avec ce seuil.")
 
