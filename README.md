@@ -1,4 +1,4 @@
-# <div align="center"> Anomaly Detection </div>
+# <div align="center"> Anomaly Detection </p>
 
 <div align="center">
 
@@ -11,9 +11,9 @@
 
 Ce projet est une réponse moderne et industrielle à la détection d'anomalies. Au lieu de traiter le sujet uniquement sous l'angle mathématique, il encapsule la science des données dans une architecture logicielle solide, facilitant la transition du prototype (Kaggle/Notebooks) à la production (API/Dashboard).
 
+---
 
-
-## Fonctionnalités
+## 1. Fonctionnalités
 
 - **3 modèles** : Isolation Forest, Autoencoder (PyTorch), LSTM-Autoencoder
 - **Benchmark reproductible** : comparaison AUC-ROC, F1, Average Precision via MLflow
@@ -22,9 +22,9 @@ Ce projet est une réponse moderne et industrielle à la détection d'anomalies.
 - **Dashboard** (Streamlit) : visualisation des scores, seuil interactif, table des anomalies
 - **CI/CD** GitHub Actions : lint (Ruff + mypy), tests (pytest + couverture), benchmark manuel
 
+---
 
-
-## Architecture
+## 2. Architecture
 
 ```
 Données (CSV / kagglehub / synthétique)
@@ -45,9 +45,9 @@ Feature engineering ──► Normalisation (RobustScaler)
    /predict          Dashboard
 ```
 
+---
 
-
-## Installation
+## 3. Installation
 
 ```bash
 git clone https://github.com/matthieugraziani/anomaly-detection.git
@@ -55,7 +55,7 @@ cd anomaly-detection
 pip install -e ".[dev]"
 ```
 
-### Données
+### 3.1. Données
 
 Le projet utilise le dataset **Credit Card Fraud** (Kaggle) — 284 807 transactions, 492 fraudes (0.17%).
 
@@ -75,11 +75,11 @@ Ou utiliser le générateur de données synthétiques intégré (aucune clé req
 python -c "from anomaly_detection.data.loader import generate_synthetic; generate_synthetic()"
 ```
 
+---
 
+## 4. Utilisation
 
-## Utilisation
-
-### Notebooks
+### 4.1. Notebooks
 
 ```
 notebooks/
@@ -88,7 +88,7 @@ notebooks/
 └── 03_benchmark_models.ipynb     # Entraînement, courbes ROC/PR, comparaison
 ```
 
-### Benchmark en ligne de commande
+### 4.2. Benchmark en ligne de commande
 
 ```bash
 python -m anomaly_detection.evaluation.benchmark \
@@ -103,7 +103,7 @@ Résultats disponibles dans l'interface MLflow :
 mlflow ui --port 5000
 ```
 
-### API FastAPI
+### 4.3. API FastAPI
 
 ```bash
 uvicorn anomaly_detection.serving.api:app --reload --port 8000
@@ -119,7 +119,7 @@ curl -X POST http://localhost:8000/predict \
 
 Endpoints disponibles : `GET /health`, `POST /predict`, `POST /threshold/{model_name}`.
 
-### Dashboard Streamlit
+### 4.4. Dashboard Streamlit
 
 ```bash
 streamlit run src/anomaly_detection/serving/dashboard.py
@@ -127,9 +127,9 @@ streamlit run src/anomaly_detection/serving/dashboard.py
 ad-dashboard
 ```
 
+---
 
-
-## Benchmark — résultats sur creditcard.csv
+## 5. Benchmark — résultats sur creditcard.csv
 
 | Modèle           | AUC-ROC | Average Precision | F1 (seuil opt.) |
 |------------------|---------|-------------------|-----------------|
@@ -139,9 +139,9 @@ ad-dashboard
 
 > Résultats reproductibles avec `seed=42` et les hyperparamètres par défaut de `settings.py`.
 
+---
 
-
-## Tests
+## 6. Tests
 
 ```bash
 pytest tests/ --cov=src --cov-report=term-missing
@@ -150,9 +150,9 @@ pytest tests/ --cov=src --cov-report=term-missing
 La CI exécute automatiquement lint + tests sur chaque push vers `main` ou `develop`.
 Le workflow `benchmark.yml` est déclenché manuellement (`workflow_dispatch`) avec le choix du dataset (`synthetic` ou `creditcard`).
 
+---
 
-
-## Structure du projet
+## 6. Structure du projet
 
 ```
 anomaly-detection/
@@ -191,8 +191,8 @@ anomaly-detection/
     └── test_api.py
 ```
 
+---
 
-
-## Licence
+## 7. Licence
 
 MIT
