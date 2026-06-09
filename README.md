@@ -1,9 +1,13 @@
 # Anomaly Detection
 
+<div align="center">
+
 [![CI](https://github.com/matthieugraziani/anomaly-detection/actions/workflows/ci.yml/badge.svg)](https://github.com/matthieugraziani/anomaly-detection/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MLflow](https://img.shields.io/badge/tracking-MLflow-orange.svg)](https://mlflow.org/)
+
+</div>
 
 Ce projet est une réponse moderne et industrielle à la détection d'anomalies. Au lieu de traiter le sujet uniquement sous l'angle mathématique, il encapsule la science des données dans une architecture logicielle solide, facilitant la transition du prototype (Kaggle/Notebooks) à la production (API/Dashboard).
 
