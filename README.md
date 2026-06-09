@@ -1,4 +1,4 @@
-# Anomaly Detection
+# <div align="center"> Anomaly Detection </div>
 
 <div align="center">
 
