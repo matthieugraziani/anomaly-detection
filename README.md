@@ -11,7 +11,7 @@
 
 Ce projet est une réponse moderne et industrielle à la détection d'anomalies. Au lieu de traiter le sujet uniquement sous l'angle mathématique, il encapsule la science des données dans une architecture logicielle solide, facilitant la transition du prototype (Kaggle/Notebooks) à la production (API/Dashboard).
 
----
+
 
 ## Fonctionnalités
 
@@ -22,7 +22,7 @@ Ce projet est une réponse moderne et industrielle à la détection d'anomalies.
 - **Dashboard** (Streamlit) : visualisation des scores, seuil interactif, table des anomalies
 - **CI/CD** GitHub Actions : lint (Ruff + mypy), tests (pytest + couverture), benchmark manuel
 
----
+
 
 ## Architecture
 
@@ -45,7 +45,7 @@ Feature engineering ──► Normalisation (RobustScaler)
    /predict          Dashboard
 ```
 
----
+
 
 ## Installation
 
@@ -75,7 +75,7 @@ Ou utiliser le générateur de données synthétiques intégré (aucune clé req
 python -c "from anomaly_detection.data.loader import generate_synthetic; generate_synthetic()"
 ```
 
----
+
 
 ## Utilisation
 
@@ -127,7 +127,7 @@ streamlit run src/anomaly_detection/serving/dashboard.py
 ad-dashboard
 ```
 
----
+
 
 ## Benchmark — résultats sur creditcard.csv
 
@@ -139,7 +139,7 @@ ad-dashboard
 
 > Résultats reproductibles avec `seed=42` et les hyperparamètres par défaut de `settings.py`.
 
----
+
 
 ## Tests
 
@@ -150,7 +150,7 @@ pytest tests/ --cov=src --cov-report=term-missing
 La CI exécute automatiquement lint + tests sur chaque push vers `main` ou `develop`.
 Le workflow `benchmark.yml` est déclenché manuellement (`workflow_dispatch`) avec le choix du dataset (`synthetic` ou `creditcard`).
 
----
+
 
 ## Structure du projet
 
@@ -191,7 +191,7 @@ anomaly-detection/
     └── test_api.py
 ```
 
----
+
 
 ## Licence
 
