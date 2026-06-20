@@ -6,10 +6,10 @@ import logging
 from pathlib import Path
 
 import numpy as np
-from numpy.typing import NDArray
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+from numpy.typing import NDArray
 
 from anomaly_detection.config import settings
 from anomaly_detection.data.loader import load_csv
