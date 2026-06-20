@@ -6,6 +6,7 @@ import logging
 from pathlib import Path
 
 import numpy as np
+from numpy.typing import NDArray
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
@@ -107,12 +108,16 @@ def run() -> None:
         scores = model.score_samples(X)
 
         if y is not None:
-            auto_threshold = find_best_threshold(y.values.astype(np.int32), scores)
+            labels_true: NDArray[np.int32] = y.to_numpy(dtype=np.int32)
+
+            auto_threshold = find_best_threshold(labels_true, scores)
+
             col_t1, col_t2 = st.columns(2)
             col_t1.metric("Seuil manuel", f"{threshold:.3f}")
             col_t2.metric("Seuil optimal (F1)", f"{auto_threshold:.3f}")
 
-            metrics = evaluate(y.values.astype(np.int32), scores, threshold)
+            
+            metrics = evaluate(labels_true, scores, threshold)
 
             st.subheader("Métriques")
             m1, m2, m3, m4 = st.columns(4)
