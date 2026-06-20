@@ -4,11 +4,11 @@ from __future__ import annotations
 
 import numpy as np
 import pytest
-from fastapi.testclient import TestClient
 
 from anomaly_detection.models import IsolationForestDetector
 from anomaly_detection.serving import api as api_module
 from anomaly_detection.serving.api import app
+from fastapi.testclient import TestClient
 
 
 @pytest.fixture(autouse=True)

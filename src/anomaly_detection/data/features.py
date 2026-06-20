@@ -3,15 +3,14 @@
 from __future__ import annotations
 
 import logging
-
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import RobustScaler
 
+from sklearn.preprocessing import RobustScaler
 from anomaly_detection.config import settings
 
-logger = logging.getLogger(__name__)
 
+logger = logging.getLogger(__name__)
 
 def add_rolling_features(df: pd.DataFrame, cols: list[str] | None = None) -> pd.DataFrame:
     """Ajoute des statistiques glissantes (mean, std, min, max) pour chaque fenêtre."""

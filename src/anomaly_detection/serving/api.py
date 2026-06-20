@@ -3,20 +3,19 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import AsyncIterator
-from contextlib import asynccontextmanager
-from pathlib import Path
-
 import numpy as np
 import uvicorn
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, Field
 
 from anomaly_detection.config import settings
 from anomaly_detection.models.base import AnomalyDetector
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
+from fastapi import FastAPI, HTTPException
+from pathlib import Path
+from pydantic import BaseModel, Field
+
 
 logger = logging.getLogger(__name__)
-
 
 class PredictRequest(BaseModel):
     """Corps de la requête de prédiction."""

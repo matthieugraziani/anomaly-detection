@@ -3,18 +3,12 @@
 from __future__ import annotations
 
 import logging
-
 import numpy as np
+
 from numpy.typing import NDArray
-from sklearn.metrics import (
-    average_precision_score,
-    f1_score,
-    precision_recall_curve,
-    roc_auc_score,
-)
+from sklearn.metrics import (average_precision_score, f1_score, precision_recall_curve, roc_auc_score)
 
 logger = logging.getLogger(__name__)
-
 
 def evaluate(
     y_true: NDArray[np.int32],
