@@ -14,9 +14,9 @@ from anomaly_detection.config import settings
 from anomaly_detection.data.loader import load_csv
 from anomaly_detection.evaluation.metrics import evaluate, find_best_threshold
 from anomaly_detection.models import ( AnomalyDetector, 
-                                     AutoencoderDetector,
-                                     IsolationForestDetector,
-                                     )
+    AutoencoderDetector,
+    IsolationForestDetector,
+)
 
 logger = logging.getLogger(__name__)
 

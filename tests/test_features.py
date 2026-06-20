@@ -5,9 +5,10 @@ import pandas as pd
 import pytest
 
 from anomaly_detection.data.features import ( add_lag_features,
-                                            add_rolling_features,
-                                            build_sequences, normalize,
-                                            )
+    add_rolling_features,
+    build_sequences, 
+    normalize,
+)
 
 @pytest.fixture
 def sample_df() -> pd.DataFrame:
