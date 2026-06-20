@@ -11,7 +11,6 @@ from anomaly_detection.serving import api as api_module
 from anomaly_detection.serving.api import app
 
 
-
 @pytest.fixture(autouse=True)
 def mock_model(monkeypatch: pytest.MonkeyPatch) -> None:
     """Injecte un modèle entraîné rapidement dans le cache de l'API."""

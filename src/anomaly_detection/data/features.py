@@ -10,7 +10,6 @@ from sklearn.preprocessing import RobustScaler
 
 from anomaly_detection.config import settings
 
-
 logger = logging.getLogger(__name__)
 
 def add_rolling_features(df: pd.DataFrame, cols: list[str] | None = None) -> pd.DataFrame:

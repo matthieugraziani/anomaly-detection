@@ -15,7 +15,6 @@ from pydantic import BaseModel, Field
 from anomaly_detection.config import settings
 from anomaly_detection.models.base import AnomalyDetector
 
-
 logger = logging.getLogger(__name__)
 
 class PredictRequest(BaseModel):
