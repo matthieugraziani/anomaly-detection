@@ -11,6 +11,7 @@ import pandas as pd
 
 from anomaly_detection.config import settings
 
+
 logger = logging.getLogger(__name__)
 
 _KAGGLE_DATASET = "mlg-ulb/creditcardfraud"

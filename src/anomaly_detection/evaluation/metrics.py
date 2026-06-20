@@ -13,7 +13,9 @@ from sklearn.metrics import (
     roc_auc_score,
 )
 
+
 logger = logging.getLogger(__name__)
+
 
 def evaluate(
     y_true: NDArray[np.int32],

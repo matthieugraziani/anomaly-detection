@@ -11,6 +11,7 @@ from anomaly_detection.data.features import (
     normalize,
 )
 
+
 @pytest.fixture
 def sample_df() -> pd.DataFrame:
     rng = np.random.default_rng(42)
