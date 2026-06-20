@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import logging
+import shutil
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
-import shutil
 
 from anomaly_detection.config import settings
-from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
