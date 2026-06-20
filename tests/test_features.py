@@ -7,7 +7,7 @@ import pytest
 from anomaly_detection.data.features import (
     add_lag_features,
     add_rolling_features,
-    build_sequences, 
+    build_sequences,
     normalize,
 )
 
