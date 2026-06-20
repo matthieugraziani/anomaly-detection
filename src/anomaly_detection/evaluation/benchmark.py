@@ -18,7 +18,11 @@ from anomaly_detection.config import settings
 from anomaly_detection.data.features import normalize
 from anomaly_detection.data.loader import load_csv
 from anomaly_detection.evaluation.metrics import evaluate, find_best_threshold
-from anomaly_detection.models import (AnomalyDetector, AutoencoderDetector, IsolationForestDetector, LSTMAEDetector)
+from anomaly_detection.models import (AnomalyDetector,
+                                    AutoencoderDetector,
+                                    IsolationForestDetector,
+                                    LSTMAEDetector,
+                                    )
 from pathlib import Path
 from sklearn.model_selection import train_test_split
 
