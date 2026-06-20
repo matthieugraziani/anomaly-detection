@@ -31,7 +31,7 @@ def add_rolling_features(df: pd.DataFrame, cols: list[str] | None = None) -> pd.
         new_cols,
         settings.rolling_windows,
     )
-    return result
+    return pd.DataFrame(result)
 
 
 def add_lag_features(df: pd.DataFrame, cols: list[str] | None = None) -> pd.DataFrame:
@@ -45,7 +45,7 @@ def add_lag_features(df: pd.DataFrame, cols: list[str] | None = None) -> pd.Data
 
     new_cols = result.shape[1] - df.shape[1]
     logger.info("Lag features ajoutées : +%d colonnes (lags %s)", new_cols, settings.lag_periods)
-    return result
+    return pd.DataFrame(result)
 
 
 def normalize(

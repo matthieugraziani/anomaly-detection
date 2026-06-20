@@ -108,9 +108,16 @@ def run_benchmark(
                 metrics["f1"],
             )
 
-    df_results = pd.DataFrame(results).set_index("model")
+    df_results: pd.DataFrame = pd.DataFrame(results)
+    df_results = df_results.set_index("model")
+
     print("\n=== Résultats benchmark ===")
-    print(df_results[["auc_roc", "average_precision", "f1", "precision", "recall"]].to_string())
+    print(
+        df_results[
+            ["auc_roc", "average_precision", "f1", "precision", "recall"]
+        ].to_string()
+    )
+
     return df_results
 
 

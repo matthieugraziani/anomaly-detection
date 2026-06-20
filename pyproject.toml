@@ -70,6 +70,7 @@ module = [
     "plotly.*",
     "pandas.*",
     "kagglehub",
+    "joblib.*",
 ]
 ignore_missing_imports = true
 
