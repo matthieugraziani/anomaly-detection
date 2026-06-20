@@ -63,6 +63,7 @@ known-first-party = ["anomaly_detection"]
 python_version = "3.10"
 strict = true
 namespace_packages = true
+explicit_package_bases = true
 mypy_path = "src"
 
 [[tool.mypy.overrides]]
