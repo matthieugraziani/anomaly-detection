@@ -10,6 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 keywords = ["anomaly-detection", "machine-learning", "pytorch", "mlflow"]
+
 dependencies = [
     "scikit-learn>=1.4",
     "torch>=2.2",
@@ -38,11 +39,14 @@ dev = [
 ]
 
 [project.scripts]
-ad-api    = "anomaly_detection.serving.api:run"
+ad-api = "anomaly_detection.serving.api:run"
 ad-dashboard = "anomaly_detection.serving.dashboard:run"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/anomaly_detection"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src" = ""
 
 [tool.ruff]
 line-length = 100
@@ -74,4 +78,7 @@ testpaths = ["tests"]
 asyncio_mode = "auto"
 
 [tool.coverage.report]
-exclude_lines = ["if TYPE_CHECKING:", "pragma: no cover"]
+exclude_lines = [
+    "if TYPE_CHECKING:",
+    "pragma: no cover",
+]
