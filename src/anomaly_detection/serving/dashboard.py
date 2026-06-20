@@ -11,7 +11,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from anomaly_detection.config import settings
-from anomaly_detection.data.loader import generate_synthetic, load_csv
+from anomaly_detection.data.loader import load_csv
 from anomaly_detection.evaluation.metrics import evaluate, find_best_threshold
 from anomaly_detection.models import (
     AnomalyDetector,
