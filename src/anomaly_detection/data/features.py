@@ -6,8 +6,8 @@ import logging
 
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import RobustScaler
 from numpy.typing import NDArray
+from sklearn.preprocessing import RobustScaler
 
 from anomaly_detection.config import settings
 
