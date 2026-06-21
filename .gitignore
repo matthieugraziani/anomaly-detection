@@ -19,8 +19,8 @@ data/processed/
 mlruns/
 mlartifacts/
 
-# Modèles sérialisés
-models/
+# Modèles sérialisés / artefacts ML entraînés
+/models/
 *.pt
 *.pkl
 *.joblib
