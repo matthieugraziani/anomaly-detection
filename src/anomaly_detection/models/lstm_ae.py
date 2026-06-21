@@ -84,7 +84,10 @@ class LSTMAEDetector(AnomalyDetector):
                 optimizer.step()
                 total_loss += loss.item()
             if (epoch + 1) % 10 == 0:
-                logger.info("LSTM Epoch %d/%d — loss=%.6f", epoch + 1, self.epochs, total_loss / len(loader))
+                logger.info("LSTM Epoch %d/%d — loss=%.6f",
+                            epoch + 1,
+                            self.epochs,
+                            total_loss / len(loader))
 
         errors = self._seq_errors(seqs)
         self._scaler.fit(errors.reshape(-1, 1))

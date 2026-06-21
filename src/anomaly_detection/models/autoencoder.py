@@ -84,7 +84,10 @@ class AutoencoderDetector(AnomalyDetector):
                 optimizer.step()
                 total_loss += loss.item()
             if (epoch + 1) % 10 == 0:
-                logger.info("Epoch %d/%d — loss=%.6f", epoch + 1, self.epochs, total_loss / len(loader))
+                logger.info(
+                    "Epoch %d/%d — loss=%.6f",
+                    epoch + 1, self.epochs,
+                    total_loss / len(loader))
 
         # Calibrer le scaler sur les erreurs de reconstruction
         errors = self._reconstruction_errors(X)
