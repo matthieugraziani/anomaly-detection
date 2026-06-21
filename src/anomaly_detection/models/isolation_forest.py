@@ -54,11 +54,15 @@ class IsolationForestDetector(AnomalyDetector):
         if not self._fitted:
             raise RuntimeError("Appelez fit() avant score_samples()")
 
-        raw = np.asarray(
+        raw: NDArray[np.float32] = np.asarray(
             -self._model.score_samples(X),
             dtype=np.float32,
         )
 
-        scores = self._scaler.transform(raw.reshape(-1, 1)).flatten()
+        scaled = self._scaler.transform(raw.reshape(-1, 1))
+        scores: NDArray[np.float32] = np.asarray(
+            scaled.flatten(),
+            dtype=np.float32,
+        )
 
         return np.clip(scores, 0.0, 1.0).astype(np.float32)
