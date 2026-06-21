@@ -41,7 +41,7 @@ jobs:
 
       # Type checking
       - name: MyPy
-        run: mypy src/anomaly_detection
+        run: python -m mypy src
 
       # Tests
       - name: Pytest
