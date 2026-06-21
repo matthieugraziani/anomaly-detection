@@ -7,6 +7,7 @@ import logging
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import RobustScaler
+from numpy.typing import NDArray
 
 from anomaly_detection.config import settings
 
@@ -47,34 +48,30 @@ def add_lag_features(df: pd.DataFrame, cols: list[str] | None = None) -> pd.Data
     logger.info("Lag features ajoutées : +%d colonnes (lags %s)", new_cols, settings.lag_periods)
     return pd.DataFrame(result)
 
-
 def normalize(
-    X_train: np.ndarray,
-    X_test: np.ndarray | None = None,
-) -> tuple[np.ndarray, np.ndarray | None, RobustScaler]:
-    """Normalise avec RobustScaler (robuste aux valeurs extrêmes)."""
+    X_train: NDArray[np.float32],
+    X_test: NDArray[np.float32] | None = None,
+) -> tuple[
+    NDArray[np.float32],
+    NDArray[np.float32] | None,
+    RobustScaler,
+]:
     scaler = RobustScaler()
-    X_train_scaled = scaler.fit_transform(X_train)
+    X_train_scaled = scaler.fit_transform(X_train).astype(np.float32)
 
-    X_test_scaled: np.ndarray | None = None
+    X_test_scaled: NDArray[np.float32] | None = None
     if X_test is not None:
-        X_test_scaled = scaler.transform(X_test)
+        X_test_scaled = scaler.transform(X_test).astype(np.float32)
 
     logger.info("RobustScaler appliqué — %d features", X_train.shape[1])
     return X_train_scaled, X_test_scaled, scaler
 
 
-def build_sequences(X: np.ndarray, seq_len: int) -> np.ndarray:
-    """Construit des séquences temporelles pour le LSTM-AE.
-
-    Args:
-        X: array (n_samples, n_features)
-        seq_len: longueur de chaque séquence
-
-    Returns:
-        array (n_samples - seq_len + 1, seq_len, n_features)
-    """
+def build_sequences(
+    X: NDArray[np.float32],
+    seq_len: int,
+) -> NDArray[np.float32]:
     n = len(X) - seq_len + 1
-    seqs = np.stack([X[i : i + seq_len] for i in range(n)])
+    seqs = np.stack([X[i : i + seq_len] for i in range(n)]).astype(np.float32)
     logger.info("Séquences LSTM : %s → %s", X.shape, seqs.shape)
     return seqs
