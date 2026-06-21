@@ -63,7 +63,7 @@ class LSTMAEDetector(AnomalyDetector):
         n = len(X) - self.seq_len + 1
         return np.stack([X[i : i + self.seq_len] for i in range(n)])
 
-    def fit(self, X: NDArray[np.float32]) -> "LSTMAEDetector":
+    def fit(self, X: NDArray[np.float32]) -> LSTMAEDetector:
         n_features = X.shape[1]
         seqs = self._build_sequences(X)
         self._model = _LSTMAE(n_features, self.hidden_size, self.num_layers).to(self._device)

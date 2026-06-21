@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 import abc
-import joblib
 import logging
 from pathlib import Path
+from typing import cast
 
+import joblib
 import numpy as np
 from numpy.typing import NDArray
-from typing import cast
 
 logger = logging.getLogger(__name__)
 
@@ -20,7 +20,7 @@ class AnomalyDetector(abc.ABC):
     name: str = "base"
 
     @abc.abstractmethod
-    def fit(self, X: NDArray[np.float32]) -> "AnomalyDetector":
+    def fit(self, X: NDArray[np.float32]) -> AnomalyDetector:
         """Entraîne le modèle sur des données normales."""
 
     @abc.abstractmethod

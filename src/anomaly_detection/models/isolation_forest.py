@@ -36,7 +36,7 @@ class IsolationForestDetector(AnomalyDetector):
         self._scaler = MinMaxScaler()
         self._fitted = False
 
-    def fit(self, X: NDArray[np.float32]) -> "IsolationForestDetector":
+    def fit(self, X: NDArray[np.float32]) -> IsolationForestDetector:
         self._model.fit(X)
 
         raw = np.asarray(

@@ -64,7 +64,7 @@ class AutoencoderDetector(AnomalyDetector):
         self._fitted = False
         self._device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    def fit(self, X: NDArray[np.float32]) -> "AutoencoderDetector":
+    def fit(self, X: NDArray[np.float32]) -> AutoencoderDetector:
         n_features = X.shape[1]
         self._model = _AE(n_features, self.hidden_dims, self.dropout).to(self._device)
         optimizer = torch.optim.Adam(self._model.parameters(), lr=self.lr)
