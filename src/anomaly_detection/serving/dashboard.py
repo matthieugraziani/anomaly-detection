@@ -38,12 +38,12 @@ def load_model(name: str) -> AnomalyDetector | None:
 
 
 @st.cache_data
-def load_data(path: str | None, target_col: str) -> tuple[pd.DataFrame, pd.Series | None]:
+def load_data(
+    path: str | None,
+    target_col: str,
+) -> tuple[pd.DataFrame, pd.Series | None]:
     if not path:
-        raise ValueError("Aucun fichier CSV fourni. Renseignez un chemin dans la barre latérale.")
-
-    if not Path(path).exists():
-        raise FileNotFoundError(f"Fichier introuvable : {path}")
+        raise ValueError("Aucun fichier CSV fourni.")
 
     return load_csv(path, target_col)
 
@@ -55,7 +55,17 @@ def run() -> None:
     # ── Sidebar ──────────────────────────────────────────────────────────────
     with st.sidebar:
         st.header("Configuration")
-        data_path = st.text_input("Chemin CSV", value="data/raw/creditcard.csv")
+        uploaded_file = st.file_uploader(
+            "Charger un CSV",
+            type=["csv"],
+        )
+
+        data_path: str | None = None
+
+        if uploaded_file is not None:
+            upload_path = Path("uploaded_data.csv")
+            upload_path.write_bytes(uploaded_file.getbuffer())
+            data_path = str(upload_path)
         target_col = st.text_input("Colonne cible", value="Class")
 
         model_name = st.selectbox(
@@ -71,7 +81,11 @@ def run() -> None:
         train_mode = st.checkbox("Entraîner un nouveau modèle", value=False)
 
     # ── Chargement données ────────────────────────────────────────────────────
-    df, y = load_data(data_path or None, target_col)
+    if data_path is None:
+        st.info("Veuillez charger un fichier CSV pour commencer.")
+        return
+
+    df, y = load_data(data_path, target_col)
     X = df.select_dtypes(include="number").values.astype(np.float32)
 
     st.subheader("Aperçu des données")
@@ -90,8 +104,13 @@ def run() -> None:
                 X_normal = X[y.values == 0] if y is not None else X
                 if model_name == "isolation_forest":
                     model = IsolationForestDetector().fit(X_normal)
-                else:
+
+                elif model_name == "autoencoder":
                     model = AutoencoderDetector().fit(X_normal)
+
+                else:
+                    from anomaly_detection.models import LSTMAEDetector
+                    model = LSTMAEDetector().fit(X_normal)
                 model.save(Path("models") / f"{model_name}.pkl")
                 st.success("Modèle entraîné et sauvegardé")
                 st.cache_resource.clear()
