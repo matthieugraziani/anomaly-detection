@@ -41,7 +41,7 @@ jobs:
 
       # Type checking
       - name: MyPy
-        run: python -m mypy src
+        run: mypy .
 
       # Tests
       - name: Pytest
