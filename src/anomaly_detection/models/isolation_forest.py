@@ -59,21 +59,6 @@ class IsolationForestDetector(AnomalyDetector):
             dtype=np.float32,
         )
 
-        self._scaler.fit(raw.reshape(-1, 1))
-        self._fitted = True
-
-        logger.info("IsolationForest entraîné sur %d échantillons", len(X))
-        return self
-
-    def score_samples(self, X: NDArray[np.float32]) -> NDArray[np.float32]:
-        if not self._fitted:
-            raise RuntimeError("Appelez fit() avant score_samples()")
-
-        raw = np.asarray(
-            -self._model.score_samples(X),
-            dtype=np.float32,
-        )
-
         scores = self._scaler.transform(raw.reshape(-1, 1)).flatten()
 
         return np.clip(scores, 0.0, 1.0).astype(np.float32)
