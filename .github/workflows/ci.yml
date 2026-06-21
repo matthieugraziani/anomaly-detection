@@ -41,7 +41,11 @@ jobs:
 
       # Type checking
       - name: MyPy
-        run: mypy .
+        run: |
+          python -m mypy \
+            --explicit-package-bases \
+            --config-file pyproject.toml \
+            src/anomaly_detection
 
       # Tests
       - name: Pytest
